@@ -50,6 +50,7 @@ public class MainFrame extends JFrame {
 
         Border blackLine = BorderFactory.createLineBorder(Color.black); // Store boarder for panels
         Font panelFont = new Font("Arial", Font.BOLD, 15); // Store font for panels
+        Font panelInputFont = new Font("Arial", Font.PLAIN, 13); // Store font for user input
 
         JPanel mandatoryPanel = new JPanel(); // Panel that includes components that should be filled in by all users (name, birthdate, etc.)
         mandatoryPanel.setBorder(blackLine); // Set boarder of mandatory panel
@@ -91,6 +92,7 @@ public class MainFrame extends JFrame {
 
         JTextField nameField = new JTextField(); // Store text field for inputting applicant name
         // Set bounds for name field with respect to frame size
+        nameField.setFont(panelInputFont); // Set font of name field
         nameField.setBounds(
                 frameSize[0] / 40 + frameSize[0] / 6,
                 frameSize[1] / 30 + (frameSize[1] * 3 / 40) / 3,
@@ -114,6 +116,7 @@ public class MainFrame extends JFrame {
 
         JTextField birthField = new JTextField(); // Store text field for inputting birthdate
         // Set bounds for birth field with respect to frame size
+        birthField.setFont(panelInputFont); // Set font of birthdate field
         birthField.setBounds(
                 frameSize[0] / 40 + frameSize[0] / 6,
                 frameSize[1] / 30 + (frameSize[1] * 3 / 40) * 4 / 3,
@@ -136,6 +139,7 @@ public class MainFrame extends JFrame {
         mandatoryPanel.add(emailLabel);
 
         JTextField emailField = new JTextField(); // Store text field for inputting email
+        emailField.setFont(panelInputFont); // Set font of email field
         // Set bounds for email field with respect to frame size
         emailField.setBounds(
                 frameSize[0] / 40 + frameSize[0] / 6,
@@ -159,6 +163,7 @@ public class MainFrame extends JFrame {
         mandatoryPanel.add(degreeLabel);
 
         JTextField degreeField = new JTextField(); // Store text field for inputting degree
+        degreeField.setFont(panelInputFont); // Set font of degree field
         // Set bounds for degree field with respect to frame size
         degreeField.setBounds(
                 frameSize[0] / 40 + frameSize[0] / 6,
@@ -201,6 +206,7 @@ public class MainFrame extends JFrame {
         optionalPanel.add(universityLabel);
 
         JTextField universityField = new JTextField(); // Store text field for inputting university
+        universityField.setFont(panelInputFont); // Set font of university field
         // Set bounds for university field with respect to frame size
         universityField.setBounds(
                 frameSize[0] / 40 + frameSize[0] / 6,
@@ -224,6 +230,7 @@ public class MainFrame extends JFrame {
         optionalPanel.add(gpaLabel);
 
         JTextField gpaField = new JTextField(); // Store text field for inputting GPA
+        gpaField.setFont(panelInputFont); // Set font of gpa field
         // Set bounds for GPA field with respect to frame size
         gpaField.setBounds(
                 frameSize[0] / 40 + frameSize[0] / 6,
@@ -232,6 +239,72 @@ public class MainFrame extends JFrame {
                 frameSize[1] / 40
         );
         optionalPanel.add(gpaField);
+
+        Font frameFont = new Font("Arial", Font.BOLD, 17); // Store font for frame
+
+        JLabel psLabel = new JLabel("Personal Statement"); // Store label for personal statement
+        psLabel.setFont(frameFont); // Set font of personal statement label
+        psLabel.setHorizontalAlignment(JLabel.CENTER); // Set horizontal alignment to center
+        psLabel.setVerticalAlignment(JLabel.CENTER); // Set vertical alignment to center
+        // Set bounds for personal statement label with respect to frame size
+        psLabel.setBounds(
+                frameSize[0] * 49 / 120,
+                frameSize[1] * 7 / 10 ,
+                frameSize[0] * 31 / 60,
+                frameSize[1] / 40
+        );
+        add(psLabel);
+
+        JTextArea psField = new JTextArea(); // Store text area for inputting personal statement
+        psField.setBorder(blackLine); // Set border for personal statement field
+        psField.setBackground(new Color(238, 238, 238)); // Set color of text field same as that of panel
+        psField.setFont(new Font("Arial", Font.ITALIC, 15)); // Set font for personal statement field
+        psField.setLineWrap(true); // When the length of user input exceeds the width of the field, text moves on to the next line
+        // Set bounds for personal statement field with respect to frame size
+        psField.setBounds(
+                frameSize[0] * 49 / 120,
+                frameSize[1] * 29 / 40,
+                frameSize[0] * 31 / 60,
+                frameSize[1] / 12
+        );
+        add(psField);
+
+        JLabel addressLabel = new JLabel("Home Address: "); // Store label for home address
+        addressLabel.setFont(frameFont); // Set font of home address label
+        addressLabel.setHorizontalAlignment(JLabel.LEFT); // Set horizontal alignment to left
+        addressLabel.setVerticalAlignment(JLabel.CENTER); // Set vertical alignment to center
+        // Set bounds for home address label with respect to frame size
+        addressLabel.setBounds(
+                frameSize[0] * 49 / 120,
+                frameSize[1] * 29 / 40 + frameSize[1] / 12,
+                frameSize[0] / 6,
+                frameSize[1] * 3 / 40
+        );
+        add(addressLabel);
+
+        JTextField addressField = new JTextField(); // Store text field for inputting home address
+        addressField.setFont(panelInputFont); // Set font of home address field
+        // Set bounds for home address field with respect to frame size
+        addressField.setBounds(
+                frameSize[0] * 63 / 120,
+                frameSize[1] * 29 / 40 + frameSize[1] / 12 + (frameSize[1] * 3 / 40) / 3,
+                frameSize[0] / 4,
+                frameSize[1] / 40
+        );
+        add(addressField);
+
+        JButton submitButton = new JButton("Submit Application"); // Store submission button
+        submitButton.setBackground(new Color(54, 117, 238)); // Set background color of submission button
+        submitButton.setForeground(Color.white); // Set text color to white
+        // Set bounds for submission button with respect to frame size
+        submitButton.setBounds(
+                frameSize[0] * 65 / 120 + frameSize[0] / 4,
+                frameSize[1] * 29 / 40 + frameSize[1] / 12 + (frameSize[1] * 3 / 40) / 3,
+                frameSize[0] * 2 / 15,
+                frameSize[1] / 40
+        );
+        add(submitButton);
+
 
         // Settings for frame
         setTitle("SKKU New Student Enrollment");
