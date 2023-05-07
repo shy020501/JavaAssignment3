@@ -89,6 +89,16 @@ public class MainFrame extends JFrame {
                 );
         mandatoryPanel.add(nameLabel);
 
+        JTextField nameField = new JTextField(); // Store text field for inputting applicant name
+        // Set bounds for name field with respect to frame size
+        nameField.setBounds(
+                frameSize[0] / 40 + frameSize[0] / 6,
+                frameSize[1] / 30 + (frameSize[1] * 3 / 40) / 3,
+                frameSize[0] * 35 / 120,
+                frameSize[1] / 40
+        );
+        mandatoryPanel.add(nameField);
+
         JLabel birthLabel = new JLabel("Birth Date: "); // Store label for birthdate
         birthLabel.setFont(panelFont); // Set font of name label
         birthLabel.setHorizontalAlignment(JLabel.RIGHT); // Set horizontal alignment to right
@@ -101,6 +111,16 @@ public class MainFrame extends JFrame {
                 frameSize[1] * 3 / 40
         );
         mandatoryPanel.add(birthLabel);
+
+        JTextField birthField = new JTextField(); // Store text field for inputting birthdate
+        // Set bounds for birth field with respect to frame size
+        birthField.setBounds(
+                frameSize[0] / 40 + frameSize[0] / 6,
+                frameSize[1] / 30 + (frameSize[1] * 3 / 40) * 4 / 3,
+                frameSize[0] * 35 / 120,
+                frameSize[1] / 40
+        );
+        mandatoryPanel.add(birthField);
 
         JLabel emailLabel = new JLabel("Email: "); // Store label for email address
         emailLabel.setFont(panelFont); // Set font of email label
@@ -115,6 +135,16 @@ public class MainFrame extends JFrame {
         );
         mandatoryPanel.add(emailLabel);
 
+        JTextField emailField = new JTextField(); // Store text field for inputting email
+        // Set bounds for email field with respect to frame size
+        emailField.setBounds(
+                frameSize[0] / 40 + frameSize[0] / 6,
+                frameSize[1] / 30 + (frameSize[1] * 3 / 40) * 7 / 3,
+                frameSize[0] * 35 / 120,
+                frameSize[1] / 40
+        );
+        mandatoryPanel.add(emailField);
+
         JLabel degreeLabel = new JLabel("Degree: "); // Store label for degree
         degreeLabel.setFont(panelFont); // Set font of degree label
         degreeLabel.setHorizontalAlignment(JLabel.RIGHT); // Set horizontal alignment to right
@@ -128,7 +158,15 @@ public class MainFrame extends JFrame {
         );
         mandatoryPanel.add(degreeLabel);
 
-
+        JTextField degreeField = new JTextField(); // Store text field for inputting degree
+        // Set bounds for degree field with respect to frame size
+        degreeField.setBounds(
+                frameSize[0] / 40 + frameSize[0] / 6,
+                frameSize[1] / 30 + (frameSize[1] * 3 / 40) * 10 / 3,
+                frameSize[0] * 35 / 120,
+                frameSize[1] / 40
+        );
+        mandatoryPanel.add(degreeField);
 
         JPanel optionalPanel = new JPanel(); // Panel that includes components that only some of the users should fill in (attended university, GPA)
         optionalPanel.setBorder(blackLine); // Set boarder of optional panel
@@ -162,7 +200,17 @@ public class MainFrame extends JFrame {
         );
         optionalPanel.add(universityLabel);
 
-        JLabel gpaLabel = new JLabel("Birth Date: "); // Store label for GPA
+        JTextField universityField = new JTextField(); // Store text field for inputting university
+        // Set bounds for university field with respect to frame size
+        universityField.setBounds(
+                frameSize[0] / 40 + frameSize[0] / 6,
+                frameSize[1] / 30 + (frameSize[1] * 3 / 40) / 3,
+                frameSize[0] * 35 / 120,
+                frameSize[1] / 40
+        );
+        optionalPanel.add(universityField);
+
+        JLabel gpaLabel = new JLabel("GPA: "); // Store label for GPA
         gpaLabel.setFont(panelFont); // Set font of GPA label
         gpaLabel.setHorizontalAlignment(JLabel.RIGHT); // Set horizontal alignment to right
         gpaLabel.setVerticalAlignment(JLabel.CENTER); // Set vertical alignment to center
@@ -175,7 +223,15 @@ public class MainFrame extends JFrame {
         );
         optionalPanel.add(gpaLabel);
 
-//        JPanel extraPanel = new JPanel(); // Panel that includes extra details including personal statement and home address
+        JTextField gpaField = new JTextField(); // Store text field for inputting GPA
+        // Set bounds for GPA field with respect to frame size
+        gpaField.setBounds(
+                frameSize[0] / 40 + frameSize[0] / 6,
+                frameSize[1] / 30 + (frameSize[1] * 3 / 40) * 4 / 3,
+                frameSize[0] * 35 / 120,
+                frameSize[1] / 40
+        );
+        optionalPanel.add(gpaField);
 
         // Settings for frame
         setTitle("SKKU New Student Enrollment");
