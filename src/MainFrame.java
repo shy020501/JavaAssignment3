@@ -1,10 +1,17 @@
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class MainFrame extends JFrame {
 
     private int[] frameSize = {1100, 900};
+
+    public void checkName(String name)
+    {
+
+    }
 
     public MainFrame(){
 
@@ -305,6 +312,12 @@ public class MainFrame extends JFrame {
         );
         add(submitButton);
 
+        submitButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
 
         // Settings for frame
         setTitle("SKKU New Student Enrollment");
