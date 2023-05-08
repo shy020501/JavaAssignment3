@@ -3,14 +3,367 @@ import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class MainFrame extends JFrame {
 
     private int[] frameSize = {1100, 900};
 
-    public void checkName(String name)
-    {
+    private boolean isGraduate = false;
 
+    public boolean isValidName(String name)
+    {
+        boolean valid = false;
+        String regex = "^[a-zA-Z]+\s[a-zA-Z]+$"; // Format of name (xxxxx xxxxx)
+        Pattern namePattern = Pattern.compile(regex); // Compile regular expression to pattern
+        Matcher nameMatcher = namePattern.matcher(name); // Check if name pattern matches name
+        if(nameMatcher.matches()) // If so, change valid to true
+        {
+            valid = true;
+        }
+        return valid;
+    }
+
+    public boolean isValidBirth(String birth)
+    {
+        boolean valid = false;
+        String regex = "^(0[1-9]|1[012])/(0[1-9]|[12][0-9]|3[01])/(\\d{4})$"; // Format of birth (mm/dd/yyyy)
+        Pattern birthPattern = Pattern.compile(regex); // Compile regular expression to pattern
+        Matcher birthMatcher = birthPattern.matcher(birth); // Check if birth pattern matches birthdate
+        if(birthMatcher.matches()) // If so, change valid to true
+        {
+            valid = true;
+        }
+        return valid;
+    }
+
+    public boolean isValidNumber(String number)
+    {
+        boolean valid = false;
+        String regex = "^\\d{3}-\\d{3,4}-\\d{4}$"; // Format of phone number (xxx"^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$";"^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$";-xxxx-xxxx)
+        Pattern numberPattern = Pattern.compile(regex); // Compile regular expression to pattern
+        Matcher numberMatcher = numberPattern.matcher(number); // Check if name pattern matches phone number
+        if(numberMatcher.matches()) // If so, change valid to true
+        {
+            valid = true;
+        }
+        return valid;
+    }
+
+    public boolean isValidEmail(String email)
+    {
+        boolean valid = false;
+        String regex = "^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$"; // Format of email(xxxxx@xxxx.xxx)
+        Pattern emailPattern = Pattern.compile(regex); // Compile regular expression to pattern
+        Matcher emailMatcher = emailPattern.matcher(email); // Check if name pattern matches phone number
+        if(emailMatcher.matches()) // If so, change valid to true
+        {
+            valid = true;
+        }
+        return valid;
+    }
+
+    public boolean isValidDegree(String degree)
+    {
+        boolean valid = false;
+        // Check if correct degree is inputted
+        if(degree.toLowerCase().equals("bachelor") || degree.toLowerCase().equals("master") || degree.toLowerCase().equals("ph.d"))
+        {
+            valid = true;
+        }
+        return valid;
+    }
+
+    public boolean isValidUni(String uni)
+    {
+        boolean valid = false;
+        String regex = "^[a-zA-Z\\s]+$"; // Format of university (xxxx University)
+        Pattern uniPattern = Pattern.compile(regex); // Compile regular expression to pattern
+        Matcher uniMatcher = uniPattern.matcher(uni); // Check if name pattern matches university
+        if(uniMatcher.matches()) // If so, change valid to true
+        {
+            valid = true;
+            System.out.println("Is valid university!");
+        }
+        return valid;
+    }
+
+    public boolean isValidGPA(String gpa)
+    {
+        boolean valid = false;
+        double gpaDouble = 0;
+        try {
+            gpaDouble = Double.parseDouble(gpa); // Try converting gpa(String) to double
+        } catch (NumberFormatException e) {} // If it is not convertible, throw exception
+
+        if(gpaDouble >= 0 && gpaDouble <= 4.5) // Check if gpa is in correct boundary
+        {
+            valid = true;
+        }
+        return valid;
+    }
+
+    public boolean isValidLab(String lab)
+    {
+        boolean valid = false;
+        String regex = "^[a-zA-Z\\s]+$"; // Format of laboratory (xxxx Laboratory)
+        Pattern labPattern = Pattern.compile(regex); // Compile regular expression to pattern
+        Matcher labMatcher = labPattern.matcher(lab); // Check if name pattern matches laboratory
+        if(labMatcher.matches()) // If so, change valid to true
+        {
+            valid = true;
+        }
+        return valid;
+    }
+
+    public boolean isValidPS(String ps)
+    {
+        boolean valid = false;
+        int wordCnt = ps.split("\\s").length; // Get length of personal statement
+        if(wordCnt >= 100) // If it is above 100 words return true
+        {
+            valid = true;
+        }
+        return valid;
+    }
+
+    public boolean isValidAddress(String address)
+    {
+        boolean valid = false;
+        String regex = "^[0-9]+(\\,)\\s[a-zA-Z0-9\\s\\-]+(\\,)\\s[a-zA-Z\\-]+(\\,)\\s[a-zA-Z]+$"; // Format of home address (number, street, district, city)
+        Pattern addressPattern = Pattern.compile(regex); // Compile regular expression to pattern
+        Matcher addressMatcher = addressPattern.matcher(address); // Check if name pattern matches home address
+        if(addressMatcher.matches()) // If so, change valid to true
+        {
+            valid = true;
+        }
+        return valid;
+    }
+
+    public void checkException(JTextField[] userInfo, JTextArea psField)
+    {
+        int errorCnt = 0; // Store number of errors that the user makes
+        String errorMsg = ""; // Store error message that would be shown on JOptionPane
+        try {
+            // Check if all the inputs are valid
+            if(isValidName(userInfo[0].getText()) && isValidBirth(userInfo[1].getText())
+                    && isValidNumber(userInfo[2].getText()) && isValidEmail(userInfo[3].getText())
+                    && isValidDegree(userInfo[4].getText()) && isValidPS(psField.getText()) && isValidAddress(userInfo[8].getText()))
+            {
+                if(userInfo[4].getText().toLowerCase().equals("bachelor")) // If degree is bachelor
+                {
+                    if(userInfo[5].getText().equals("") && userInfo[6].getText().equals("") && userInfo[7].getText().equals("")) // Check if options for graduates are empty
+                    {
+                        JOptionPane.showMessageDialog(null, "Successfully Submitted", "Success Message\n", JOptionPane.PLAIN_MESSAGE);
+                        for(int i = 0; i < userInfo.length; i++)
+                        {
+                            userInfo[i].setForeground(Color.black);
+                        }
+                        psField.setForeground(Color.black);
+                    }
+                    else
+                    {
+                        if(!userInfo[5].getText().equals("")) // If attended university column is not empty
+                        {
+                            errorCnt += 1; // Increase error count by one
+                            errorMsg += (errorCnt + ". For undergraduate, attended university should be empty\n");
+                            userInfo[5].setForeground(Color.red); // Set text in corresponding text field to red
+                        }
+                        if(!userInfo[6].getText().equals("")) // If GPA column is not empty
+                        {
+                            errorCnt += 1; // Increase error count by one
+                            errorMsg += (errorCnt + ". For undergraduate, GPA should be empty\n");
+                            userInfo[6].setForeground(Color.red); // Set text in corresponding text field to red
+                        }
+                        if(!userInfo[7].getText().equals("")) // If laboratory column is not empty
+                        {
+                            errorCnt += 1; // Increase error count by one
+                            errorMsg += (errorCnt + ". For undergraduate, laboratory should be empty\n");
+                            userInfo[7].setForeground(Color.red); // Set text in corresponding text field to red
+                        }
+                        JOptionPane.showMessageDialog(null, errorMsg, "You have following problems:", JOptionPane.ERROR_MESSAGE); // Show error messages
+                    }
+                }
+                else if(userInfo[4].getText().toLowerCase().equals("master") || userInfo[4].getText().toLowerCase().equals("ph.d")) // If degree is master or ph.d
+                {
+                    if(isValidUni(userInfo[5].getText()) && isValidGPA(userInfo[6].getText()) && isValidLab(userInfo[7].getText())) // Check if options for graduates are not empty
+                    {
+                        JOptionPane.showMessageDialog(null, "Successfully Submitted", "Success Message\n", JOptionPane.PLAIN_MESSAGE);
+                        for(int i = 0; i < userInfo.length; i++)
+                        {
+                            userInfo[i].setForeground(Color.black);
+                        }
+                        psField.setForeground(Color.black);
+                    }
+                    else
+                    {
+                        if(userInfo[5].getText().equals("") || userInfo[6].getText().equals("") || userInfo[7].getText().equals("")) // If any of columns for graduates is empty
+                        {
+                            errorCnt += 1; // Increase error count by one
+                            errorMsg += (errorCnt + ". For graduate, you have to enter previous university, GPA, and laboratory name\n");
+                            userInfo[4].setForeground(Color.red); // Set text in corresponding text field to red
+                        }
+                        else
+                        {
+                            userInfo[4].setForeground(Color.black);
+                            if(!isValidUni(userInfo[5].getText())) // If attended university column is not in proper format
+                            {
+                                errorCnt += 1; // Increase error count by one
+                                errorMsg += (errorCnt + ". Your university name must not be empty\n");
+                                userInfo[5].setForeground(Color.red); // Set text in corresponding text field to red
+                            }
+                            else
+                            {
+                                userInfo[5].setForeground(Color.black); // Set text in corresponding text field to black
+                            }
+                            if(!isValidUni(userInfo[6].getText())) // If GPA column is not in proper format
+                            {
+                                errorCnt += 1; // Increase error count by one
+                                errorMsg += (errorCnt + ". Your GPA must be between 0 and 4.5\n");
+                                userInfo[6].setForeground(Color.red); // Set text in corresponding text field to red
+                            }
+                            else
+                            {
+                                userInfo[6].setForeground(Color.black); // Set text in corresponding text field to black
+                            }
+                            if(!isValidUni(userInfo[7].getText())) // If laboratory column is not in proper format
+                            {
+                                errorCnt += 1; // Increase error count by one
+                                errorMsg += (errorCnt + ". Your laboratory name must not be empty\n");
+                                userInfo[7].setForeground(Color.red); // Set text in corresponding text field to red
+                            }
+                            else
+                            {
+                                userInfo[7].setForeground(Color.black); // Set text in corresponding text field to black
+                            }
+                        }
+                        JOptionPane.showMessageDialog(null, errorMsg, "You have following problems:", JOptionPane.ERROR_MESSAGE); // Show error messages
+                    }
+                }
+            }
+            else
+            {
+                throw new Exception();
+            }
+        }
+        catch (Exception e1)
+        {
+            if(!isValidName(userInfo[0].getText())) // If applicant name column is not in proper format
+            {
+                errorCnt += 1; // Increase error count by one
+                errorMsg += (errorCnt + ". You forgot to write your name or surname.\n");
+                userInfo[0].setForeground(Color.red); // Set text in corresponding text field to red
+            }
+            else
+            {
+                userInfo[0].setForeground(Color.black); // Set text in corresponding text field to black
+            }
+            if(!isValidBirth(userInfo[1].getText())) // If birthdate column is not in proper format
+            {
+                errorCnt += 1; // Increase error count by one
+                errorMsg += (errorCnt + ". Birth date must be in 'dd/mm/yyyy' format.\n");
+                userInfo[1].setForeground(Color.red); // Set text in corresponding text field to red
+            }
+            else
+            {
+                userInfo[1].setForeground(Color.black); // Set text in corresponding text field to black
+            }
+            if(!isValidNumber(userInfo[2].getText())) // If phone number column is not in proper format
+            {
+                errorCnt += 1; // Increase error count by one
+                errorMsg += (errorCnt + ". Phone number must be 'xxx-xxx-xxxx' or 'xxx-xxxx-xxxx' format.\n");
+                userInfo[2].setForeground(Color.red); // Set text in corresponding text field to red
+            }
+            else
+            {
+                userInfo[2].setForeground(Color.black); // Set text in corresponding text field to black
+            }
+            if(!isValidEmail(userInfo[3].getText())) // If email column is not in proper format
+            {
+                errorCnt += 1; // Increase error count by one
+                errorMsg += (errorCnt + ". Email must be 'example@xxxx.xxx' format.\n");
+                userInfo[3].setForeground(Color.red); // Set text in corresponding text field to red
+            }
+            else
+            {
+                userInfo[3].setForeground(Color.black); // Set text in corresponding text field to black
+            }
+            if(!isValidDegree(userInfo[4].getText())) // If degree column is not in proper format
+            {
+                errorCnt += 1; // Increase error count by one
+                errorMsg += (errorCnt + ". Your degree should be 'Bachelor' or 'Master' or 'Ph.D'.\n");
+                userInfo[4].setForeground(Color.red); // Set text in corresponding text field to red
+            }
+            else
+            {
+                userInfo[4].setForeground(Color.black); // Set text in corresponding text field to black
+                if(userInfo[4].getText().toLowerCase().equals("master") || userInfo[4].getText().toLowerCase().equals("ph.d"))
+                {
+                    if(userInfo[5].getText().equals("") || userInfo[6].getText().equals("") || userInfo[7].getText().equals("")) // If any of columns for graduates is empty
+                    {
+                        errorCnt += 1; // Increase error count by one
+                        errorMsg += (errorCnt + ". For graduate, you have to enter previous university, GPA, and laboratory name\n");
+                        userInfo[4].setForeground(Color.red); // Set text in corresponding text field to red
+                    }
+                    else
+                    {
+                        userInfo[4].setForeground(Color.black);
+                        if(!isValidUni(userInfo[5].getText())) // If attended university column is not in proper format
+                        {
+                            errorCnt += 1; // Increase error count by one
+                            errorMsg += (errorCnt + ". Your university name must not be empty\n");
+                            userInfo[5].setForeground(Color.red); // Set text in corresponding text field to red
+                        }
+                        else
+                        {
+                            userInfo[5].setForeground(Color.black); // Set text in corresponding text field to black
+                        }
+                        if(!isValidUni(userInfo[6].getText())) // If GPA column is not in proper format
+                        {
+                            errorCnt += 1; // Increase error count by one
+                            errorMsg += (errorCnt + ". Your GPA must be between 0 and 4.5\n");
+                            userInfo[6].setForeground(Color.red); // Set text in corresponding text field to red
+                        }
+                        else
+                        {
+                            userInfo[6].setForeground(Color.black); // Set text in corresponding text field to black
+                        }
+                        if(!isValidUni(userInfo[7].getText())) // If laboratory column is not in proper format
+                        {
+                            errorCnt += 1; // Increase error count by one
+                            errorMsg += (errorCnt + ". Your laboratory name must not be empty\n");
+                            userInfo[7].setForeground(Color.red); // Set text in corresponding text field to red
+                        }
+                        else
+                        {
+                            userInfo[7].setForeground(Color.black); // Set text in corresponding text field to black
+                        }
+                    }
+                }
+            }
+            if(!isValidPS(psField.getText())) // If personal statement column is not in proper format
+            {
+                errorCnt += 1; // Increase error count by one
+                errorMsg += (errorCnt + ". Your personal statement must be at least 100 words.\n");
+                psField.setForeground(Color.red); // Set text in corresponding text field to red
+            }
+            else
+            {
+                psField.setForeground(Color.black); // Set text in corresponding text field to black
+            }
+            if(!isValidAddress(userInfo[8].getText())) // If home address column is not in proper format
+            {
+                errorCnt += 1; // Increase error count by one
+                errorMsg += (errorCnt + ". Your address must be in 'number, street, district, city' format.\n");
+                userInfo[8].setForeground(Color.red); // Set text in corresponding text field to red
+            }
+            else
+            {
+                userInfo[8].setForeground(Color.black); // Set text in corresponding text field to black
+            }
+            JOptionPane.showMessageDialog(null, errorMsg, "You have following problems:", JOptionPane.ERROR_MESSAGE); // Show error messages
+        }
     }
 
     public MainFrame(){
@@ -363,7 +716,19 @@ public class MainFrame extends JFrame {
         submitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                JTextField[] userInfo = {
+                        nameField,
+                        birthField,
+                        phoneField,
+                        emailField,
+                        degreeField,
+                        universityField,
+                        gpaField,
+                        labField,
+                        addressField
+                };
 
+                checkException(userInfo, psField);
             }
         });
 
