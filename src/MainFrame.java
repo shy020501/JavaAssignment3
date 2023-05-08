@@ -93,7 +93,7 @@ public class MainFrame extends JFrame {
                 frameSize[0] / 80,
                 frameSize[1] / 30,
                 frameSize[0] / 6,
-                frameSize[1] * 3 / 40
+                frameSize[1] * 4 / 75
                 );
         mandatoryPanel.add(nameLabel);
 
@@ -102,7 +102,7 @@ public class MainFrame extends JFrame {
         nameField.setFont(panelInputFont); // Set font of name field
         nameField.setBounds(
                 frameSize[0] / 40 + frameSize[0] / 6,
-                frameSize[1] / 30 + (frameSize[1] * 3 / 40) / 3,
+                frameSize[1] / 30 + (frameSize[1] * 4 / 75) / 3,
                 frameSize[0] * 35 / 120,
                 frameSize[1] / 40
         );
@@ -115,9 +115,9 @@ public class MainFrame extends JFrame {
         // Set bounds for birthdate label with respect to frame size
         birthLabel.setBounds(
                 frameSize[0] / 80,
-                frameSize[1] / 30 + (frameSize[1] * 3 / 40),
+                frameSize[1] / 30 + (frameSize[1] * 4 / 75),
                 frameSize[0] / 6,
-                frameSize[1] * 3 / 40
+                frameSize[1] * 4 / 75
         );
         mandatoryPanel.add(birthLabel);
 
@@ -126,11 +126,35 @@ public class MainFrame extends JFrame {
         birthField.setFont(panelInputFont); // Set font of birthdate field
         birthField.setBounds(
                 frameSize[0] / 40 + frameSize[0] / 6,
-                frameSize[1] / 30 + (frameSize[1] * 3 / 40) * 4 / 3,
+                frameSize[1] / 30 + (frameSize[1] * 4 / 75) * 4 / 3,
                 frameSize[0] * 35 / 120,
                 frameSize[1] / 40
         );
         mandatoryPanel.add(birthField);
+
+        JLabel phoneLabel = new JLabel("Phone Number: "); // Store label for phone number
+        phoneLabel.setFont(panelFont); // Set font of phone number label
+        phoneLabel.setHorizontalAlignment(JLabel.RIGHT); // Set horizontal alignment to right
+        phoneLabel.setVerticalAlignment(JLabel.CENTER); // Set vertical alignment to center
+        // Set bounds for phone number label with respect to frame size
+        phoneLabel.setBounds(
+                frameSize[0] / 80,
+                frameSize[1] / 30 + (frameSize[1] * 4 / 75) * 2,
+                frameSize[0] / 6,
+                frameSize[1] * 4 / 75
+        );
+        mandatoryPanel.add(phoneLabel);
+
+        JTextField phoneField = new JTextField(); // Store text field for inputting phone number
+        phoneField.setFont(panelInputFont); // Set font of phone number field
+        // Set bounds for phone number field with respect to frame size
+        phoneField.setBounds(
+                frameSize[0] / 40 + frameSize[0] / 6,
+                frameSize[1] / 30 + (frameSize[1] * 4 / 75) * 7 / 3,
+                frameSize[0] * 35 / 120,
+                frameSize[1] / 40
+        );
+        mandatoryPanel.add(phoneField);
 
         JLabel emailLabel = new JLabel("Email: "); // Store label for email address
         emailLabel.setFont(panelFont); // Set font of email label
@@ -139,9 +163,9 @@ public class MainFrame extends JFrame {
         // Set bounds for email label with respect to frame size
         emailLabel.setBounds(
                 frameSize[0] / 80,
-                frameSize[1] / 30 + (frameSize[1] * 3 / 40) * 2,
+                frameSize[1] / 30 + (frameSize[1] * 4 / 75) * 3,
                 frameSize[0] / 6,
-                frameSize[1] * 3 / 40
+                frameSize[1] * 4 / 75
         );
         mandatoryPanel.add(emailLabel);
 
@@ -150,7 +174,7 @@ public class MainFrame extends JFrame {
         // Set bounds for email field with respect to frame size
         emailField.setBounds(
                 frameSize[0] / 40 + frameSize[0] / 6,
-                frameSize[1] / 30 + (frameSize[1] * 3 / 40) * 7 / 3,
+                frameSize[1] / 30 + (frameSize[1] * 4 / 75) * 10 / 3,
                 frameSize[0] * 35 / 120,
                 frameSize[1] / 40
         );
@@ -163,9 +187,9 @@ public class MainFrame extends JFrame {
         // Set bounds for degree label with respect to frame size
         degreeLabel.setBounds(
                 frameSize[0] / 80,
-                frameSize[1] / 30 + (frameSize[1] * 3 / 40) * 3,
+                frameSize[1] / 30 + (frameSize[1] * 4 / 75) * 4,
                 frameSize[0] / 6,
-                frameSize[1] * 3 / 40
+                frameSize[1] * 4 / 75
         );
         mandatoryPanel.add(degreeLabel);
 
@@ -174,7 +198,7 @@ public class MainFrame extends JFrame {
         // Set bounds for degree field with respect to frame size
         degreeField.setBounds(
                 frameSize[0] / 40 + frameSize[0] / 6,
-                frameSize[1] / 30 + (frameSize[1] * 3 / 40) * 10 / 3,
+                frameSize[1] / 30 + (frameSize[1] * 4 / 75) * 13 / 3,
                 frameSize[0] * 35 / 120,
                 frameSize[1] / 40
         );
@@ -208,7 +232,7 @@ public class MainFrame extends JFrame {
                 frameSize[0] / 80,
                 frameSize[1] / 30,
                 frameSize[0] / 6,
-                frameSize[1] * 3 / 40
+                frameSize[1]  * 4 / 75
         );
         optionalPanel.add(universityLabel);
 
@@ -217,7 +241,7 @@ public class MainFrame extends JFrame {
         // Set bounds for university field with respect to frame size
         universityField.setBounds(
                 frameSize[0] / 40 + frameSize[0] / 6,
-                frameSize[1] / 30 + (frameSize[1] * 3 / 40) / 3,
+                frameSize[1] / 30 + (frameSize[1] * 4 / 75) / 3,
                 frameSize[0] * 35 / 120,
                 frameSize[1] / 40
         );
@@ -230,9 +254,9 @@ public class MainFrame extends JFrame {
         // Set bounds for GPA label with respect to frame size
         gpaLabel.setBounds(
                 frameSize[0] / 80,
-                frameSize[1] / 30 + (frameSize[1] * 3 / 40),
+                frameSize[1] / 30 + (frameSize[1] * 4 / 75),
                 frameSize[0] / 6,
-                frameSize[1] * 3 / 40
+                frameSize[1]  * 4 / 75
         );
         optionalPanel.add(gpaLabel);
 
@@ -241,11 +265,35 @@ public class MainFrame extends JFrame {
         // Set bounds for GPA field with respect to frame size
         gpaField.setBounds(
                 frameSize[0] / 40 + frameSize[0] / 6,
-                frameSize[1] / 30 + (frameSize[1] * 3 / 40) * 4 / 3,
+                frameSize[1] / 30 + (frameSize[1] * 4 / 75) * 4 / 3,
                 frameSize[0] * 35 / 120,
                 frameSize[1] / 40
         );
         optionalPanel.add(gpaField);
+
+        JLabel labLabel = new JLabel("Laboratory: "); // Store label for lab
+        labLabel.setFont(panelFont); // Set font of lab label
+        labLabel.setHorizontalAlignment(JLabel.RIGHT); // Set horizontal alignment to right
+        labLabel.setVerticalAlignment(JLabel.CENTER); // Set vertical alignment to center
+        // Set bounds for lab label with respect to frame size
+        labLabel.setBounds(
+                frameSize[0] / 80,
+                frameSize[1] / 30 + (frameSize[1] * 4 / 75) * 2,
+                frameSize[0] / 6,
+                frameSize[1]  * 4 / 75
+        );
+        optionalPanel.add(labLabel);
+
+        JTextField labField = new JTextField(); // Store text field for inputting lab
+        labField.setFont(panelInputFont); // Set font of lab field
+        // Set bounds for lab field with respect to frame size
+        labField.setBounds(
+                frameSize[0] / 40 + frameSize[0] / 6,
+                frameSize[1] / 30 + (frameSize[1] * 4 / 75) * 7 / 3,
+                frameSize[0] * 35 / 120,
+                frameSize[1] / 40
+        );
+        optionalPanel.add(labField);
 
         Font frameFont = new Font("Arial", Font.BOLD, 17); // Store font for frame
 
