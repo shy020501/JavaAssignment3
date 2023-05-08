@@ -84,7 +84,6 @@ public class MainFrame extends JFrame {
         if(uniMatcher.matches()) // If so, change valid to true
         {
             valid = true;
-            System.out.println("Is valid university!");
         }
         return valid;
     }
